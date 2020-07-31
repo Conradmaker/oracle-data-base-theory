@@ -209,8 +209,35 @@ WHERE JOB_CODE = 'J2';
 --EMPLOYEE테이블에서 연봉이 5000만원 이상인 직원들의 직원명, 급여, 연봉, 입사일 조회
 SELECT EMP_NAME,SALARY,SALARY*12 연봉, HIRE_DATE
 FROM EMPLOYEE
-WHERE SALARY*12 >= 50000000;
+WHERE SALARY*12 >= 50000000; //WHERE절에서는 별칭 사용 불가
 ```
 {% endtab %}
 {% endtabs %}
+
+
+
+### 논리연산자
+
+여러개의 조건을 엮을 때 사용
+
+| 연산자 | 의미 |
+| :---: | :---: |
+| AND | ~이면서, 그리고 |
+| OR | ~이거나, 또는 |
+
+#### 부서코드가 'D9'이면서 급여가 500만원 이상인 직원들의 직원명, 부서코드, 급여조회
+
+```sql
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D9' AND SALARY >= 5000000;
+```
+
+#### 급여가 350이상이고 600만원 이하인 직원들의 직원명, 사번, 급여, 직급코드 조회
+
+```sql
+SELECT EMP_NAME, EMP_ID, SALARY, JOB_CODE
+FROM EMPLOYEE
+WHERE SALARY >= 3500000 AND SALARY <= 6000000
+```
 
