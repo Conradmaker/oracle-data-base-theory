@@ -155,3 +155,62 @@ FROM EMPLOYEE
 WHERE DEPT_CODE <> 'D9';
 ```
 
+### 
+
+### 실행순서
+
+위 예시를 통해 알아봐요
+
+```sql
+SELECT EMP_NAME, DEPT_CODE, SALARY//3번
+FROM EMPLOYEE        //1번
+WHERE DEPT_CODE='D9';//2번
+```
+
+
+
+## 실습
+
+1. EMPLOYEE테이블에서 급여가 300만원 이상인 직원들의 직원명, 급여, 입사일 조회
+2. EMPLOYEE테이블에서 재직중인 직원들의 사번, 이름, 입사일 조회
+3. EMPLOYEE테이블에서 직급코드가 J2인 직원들의 직원명, 급여, 보너스 조회
+4. EMPLOYEE테이블에서 연봉이 5000만원 이상인 직원들의 직원명, 급여, 연봉, 입사일 조회
+
+{% tabs %}
+{% tab title="1" %}
+```sql
+--EMPLOYEE테이블에서 급여가 300만원 이상인 직원들의 직원명, 급여, 입사일 조회
+SELECT EMP_NAME,SALARY,HIRE_DATE
+FROM EMPLOYEE
+WHERE SALARY >= 3000000;
+```
+{% endtab %}
+
+{% tab title="2" %}
+```sql
+--EMPLOYEE테이블에서 재직중인 직원들의 사번, 이름, 입사일 조회
+SELECT EMP_NAME,EMP_ID, HIRE_DATE
+FROM EMPLOYEE
+WHERE ENT_YN = 'N';
+```
+{% endtab %}
+
+{% tab title="3" %}
+```sql
+--EMPLOYEE테이블에서 직급코드가 J2인 직원들의 직원명, 급여, 보너스 조회
+SELECT EMP_NAME, SALARY,BONUS
+FROM EMPLOYEE
+WHERE JOB_CODE = 'J2';
+```
+{% endtab %}
+
+{% tab title="4" %}
+```sql
+--EMPLOYEE테이블에서 연봉이 5000만원 이상인 직원들의 직원명, 급여, 연봉, 입사일 조회
+SELECT EMP_NAME,SALARY,SALARY*12 연봉, HIRE_DATE
+FROM EMPLOYEE
+WHERE SALARY*12 >= 50000000;
+```
+{% endtab %}
+{% endtabs %}
+
