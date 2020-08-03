@@ -241,3 +241,190 @@ FROM EMPLOYEE
 WHERE SALARY >= 3500000 AND SALARY <= 6000000
 ```
 
+
+
+## BETWEEN
+
+### 몇 이상 몇 이하인 범위에 대한 조건을 확인할때
+
+```sql
+비교대한 칼럼명 BETWEEN 조건 AND 조건
+```
+
+#### 급여가 350만원 이상, 600만원 이하인 사원들의 사원명, 사번 ,급여, 직급코드 조회
+
+```sql
+SELECT
+	EMP_NAME,
+	EMP_ID,
+	SALARY,
+	JOB_CODE 
+FROM
+	EMPLOYEE 
+WHERE
+	SALARY BETWEEN 3500000 
+	AND 6000000;
+```
+
+#### 
+
+### BETWEEN AND 연산자 DATE형식간에서도 사용 가능
+
+#### 입사일이 '90/01/01'~'01/01/01'인 사원들의 모든 칼럼 조회
+
+```sql
+SELECT *
+FROM EMPLOYEE 
+WHERE HIRE_DATE BETWEEN '90/01/01' AND '01/01/01';
+```
+
+
+
+### NOT 추가
+
+#### 그밖에 범위를 조회한다면
+
+```sql
+SELECT *
+FROM EMPLOYEE 
+WHERE NOT HIRE_DATE BETWEEN '90/01/01' AND '01/01/01';
+```
+
+
+
+## LIKE & WILD CARD
+
+### 비교하려는 컬럼값이 내가 지정한 특정 패턴에 만족될 경우 조회
+
+* 특정 패턴에 '%' '\_' 를 와일드 카드로 사용할 수 있다
+
+### %
+
+```sql
+비교대상칼럼명 LIKE '문자%' 
+--칼럼값중에 '문자' 로 '시작'되는 걸 조회
+
+비교대상칼럼명 LIKE '%문자'
+--칼럼값중에 '문자' 로 '끝'나는 걸 조회
+
+비교대상칼럼명 LIKE '%문자%'
+--칼럼값중에 '문자' 가 '포함'되는 것을 조회
+```
+
+
+
+### \_ 
+
+```sql
+비교대상칼럼명 LIKE '_문자'
+--칼럼값중에 '문자'앞에 무조건 '한글자'가 올 경우 조회
+
+비교대상칼럼명 LIKE '__문자'
+--칼럼값중에 '문자'앞에 무조건 '두글자'가 올 경우 조회
+```
+
+### ex
+
+#### 성이 전씨인 사원들 조회
+
+```sql
+SELECT EMP_NAME
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE '전%';
+```
+
+#### 이름중 하 가 포함된 사원들의 사원명, 주민번호, 부서코드
+
+```sql
+SELECT EMP_NAME , EMP_NO , DEPT_CODE
+FROM EMPLOYEE 
+WHERE EMP_NAME LIKE '%하%';
+```
+
+#### 전화번호 4번째 자리가 9로 시작하는 사원들의 사번 , 사원명, 전화번호, 이메일조회
+
+```sql
+SELECT EMP_ID, EMP_NAME , PHONE, EMAIL
+FROM EMPLOYEE 
+WHERE PHONE LIKE '___9%';
+```
+
+이메일중 \_ 앞글자가 3글자인 이메일 주소를 가진 사원들의 사번, 이름, 이메일조회
+
+```sql
+SELECT EMP_ID , EMP_NAME , EMAIL
+FROM EMPLOYEE 
+WHERE EMAIL LIKE '____%';
+```
+
+{% hint style="danger" %}
+ \_을 무조건 와일드 카드로 인식하기 때문에 인식안된다.
+{% endhint %}
+
+#### 해결법 \(`ESCAPE`\)
+
+* 어떤게 와일드카드고 어떤게 데이터인지 구분지어주면 된다.
+* 데이터로 인식시킬 값 앞에 임의로 나만의 와일드카드로 제시하고 나만의 와일드카드를 `ESCAPE`로 등록
+
+```sql
+SELECT EMP_ID , EMP_NAME , EMAIL
+FROM EMPLOYEE 
+WHERE EMAIL LIKE '___$_%' ESCAPE '$';
+```
+
+
+
+#### 김씨 성이 나닌 사원들의 사번, 사원명, 입사일 조회
+
+```sql
+SELECT EMP_ID , EMP_NAME , HIRE_DATE
+FROM EMPLOYEE 
+WHERE NOT EMP_NAME LIKE '김%';  --LIKE앞에도 기입 가능
+
+```
+
+
+
+## 실습2
+
+1. 이름 끝이 '연'으로 끝나는 사원들의 사원명, 입사일 조회
+2. 전화번호 처음 3글자가 010이 아닌 사원들의 사우너명, 전화번호 조회
+3. DEPARTMENT테이블에서 해외영업부인 모든 컬럼 조회
+
+{% tabs %}
+{% tab title="1" %}
+```sql
+SELECT
+	EMP_NAME,
+	HIRE_DATE 
+FROM
+	EMPLOYEE 
+WHERE
+	EMP_NAME LIKE '%연';
+```
+{% endtab %}
+
+{% tab title="2" %}
+```sql
+SELECT
+	EMP_NAME,
+	PHONE 
+FROM
+	EMPLOYEE 
+WHERE
+	PHONE NOT LIKE '010%';
+```
+{% endtab %}
+
+{% tab title="3" %}
+```sql
+SELECT
+	* 
+FROM
+	DEPARTMENT 
+WHERE
+	DEPT_TITLE LIKE '해외%';
+```
+{% endtab %}
+{% endtabs %}
+
