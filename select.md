@@ -452,13 +452,151 @@ NULL값비교는 단순 비교연산자로 할 수 없다.
 
 ```sql
 --보너스를 받지 않는 사원
-SELECT EMP_ID , EMP_NAME, SALARY, BONUS
-FROM EMPLOYEE 
-WHERE BONUS IS NULL;
+SELECT
+	EMP_ID,
+	EMP_NAME,
+	SALARY,
+	BONUS 
+FROM
+	EMPLOYEE 
+WHERE
+	BONUS IS NULL;
 
 --반대로 보너스 받는 사원
-SELECT EMP_ID , EMP_NAME, SALARY, BONUS
-FROM EMPLOYEE 
-WHERE BONUS IS NOT NULL;
+SELECT
+	EMP_ID,
+	EMP_NAME,
+	SALARY,
+	BONUS 
+FROM
+	EMPLOYEE 
+WHERE
+	BONUS IS NOT NULL;
+```
+
+#### 사수도 없고 부서배치도 안받은 사원의 모든 칼럼 조회
+
+```sql
+SELECT
+	* 
+FROM
+	EMPLOYEE 
+WHERE
+	MANAGER_ID IS NULL 
+	AND DEPT_CODE IS NULL;
+```
+
+## 
+
+## IN
+
+비교대상 칼럼값에 목록들 중에 일치하는 값이 있는지
+
+```sql
+비교대상칼럼 IN (값, 값, 값, ....)
+```
+
+#### 
+
+#### 부서코드가 D6이거나 D8이거나 D5인 사원들의 사원명, 부서코드, 급여조회
+
+#### 사용하지 않고 구현
+
+```sql
+SELECT
+	EMP_NAME,
+	DEPT_CODE,
+	SALARY 
+FROM
+	EMPLOYEE 
+WHERE
+	DEPT_CODE = 'D6' 
+	OR DEPT_CODE = 'D8' 
+	OR DEPT_CODE = 'D5';
+```
+
+#### 사용하고 구현
+
+```sql
+SELECT
+	EMP_NAME,
+	DEPT_CODE,
+	SALARY 
+FROM
+	EMPLOYEE 
+WHERE
+	DEPT_CODE IN ( 'D6', 'D8', 'D5' );
+```
+
+#### 그 외인 사원들
+
+```sql
+SELECT
+	EMP_NAME,
+	DEPT_CODE,
+	SALARY 
+FROM
+	EMPLOYEE 
+WHERE
+	DEPT_CODE NOT IN ( 'D6', 'D8', 'D5' );
+```
+
+
+
+## 연결연산자
+
+* 여러 컬럼값들을 하나의 컬럼인 것처럼 연결시켜주는 연산자
+* 컬럼과 리터럴 \(임의의 문자열\)을 연결할 수도 있다.
+
+```sql
+SELECT 
+    EMP_ID || EMP_NAME || SALARY
+FROM 
+    EMPLOYEE;
+```
+
+하나의 칼럼으로 출력된다.
+
+```sql
+SELECT
+	EMP_ID || '번' || EMP_NAME || '의 월급은' || SALARY || '원입니다' 
+FROM
+	EMPLOYEE;
+
+-- > 몇번 누구의 월급은 몇원입니다.
+```
+
+
+
+## 연산자 우선순위
+
+1. \(\)
+2. 산술연산자
+3. 연결연산자
+4. 비교연산자
+5. IS NULL / LIKE / IN
+6. BETWEEN  / AND
+7. NOT
+8. AND \(논리 연산자\)
+9. OR \(논리 연산자\)
+
+## ORDER BY
+
+* SELECT문 가장 마지막에 기입하는 구문 
+* 실행순서 또한 가장 마지막이다. 
+
+### 표현법
+
+```sql
+SELECT
+	조회할 칼럼, 칼럼,
+	....
+FROM
+	조회할 테이블명 
+WHERE
+	조건식 
+ORDER BY
+	정렬시킬칼럼명|별칠|칼럼순번 ASC ( 기본값 ) / DESC
+	                           NULLS (FIRST/LAST)
 ```
 
