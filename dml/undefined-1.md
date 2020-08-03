@@ -165,3 +165,34 @@ FROM
 
 
 
+## LTRIM / RTRIM
+
+```sql
+LTRIM/RTRIM(STRING,[제거하고자하는 문자])
+```
+
+* 문자열의 왼쪽 혹은 오른쪽에서 제거하고자 하는 문자들을 찾아서 제거한 나머지 문자열을 반환
+* 제거할 문자 작성안하면 공백을 제거해준다.
+
+#### EX
+
+```sql
+SELECT
+	LTRIM( '      A  B' )        --A  B 왼쪽공백들을 제거해준다.
+SELECT
+	LTRIM( '00012345600','0')    --12345600 왼쪽 0을 찾아 제거
+FROM
+	DUAL
+```
+
+```sql
+SELECT
+	LTRIM( 'ACABACCWG','ABC' ) --WG 
+FROM
+	DUAL
+```
+
+{% hint style="warning" %}
+특정의 문자열을 제거 즉, 'ABC'를 지워주는 것이 아닌 'A' , 'B', 'C'를 찾아 지워주는것.
+{% endhint %}
+
