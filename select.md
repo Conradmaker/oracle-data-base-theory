@@ -428,3 +428,37 @@ WHERE
 {% endtab %}
 {% endtabs %}
 
+
+
+## IS NULL / IS NOT NULL
+
+```sql
+비교대상 칼럼 IS NULL : 칼럼값이 NULL일 경우
+
+비교대상 칼럼 IS NOT NULL : 칼럼값이 NULL이 아닌 경우
+```
+
+```sql
+SELECT EMP_ID , EMP_NAME, SALARY, BONUS
+FROM EMPLOYEE 
+WHERE BONUS = NULL;
+```
+
+{% hint style="danger" %}
+NULL값비교는 단순 비교연산자로 할 수 없다.
+{% endhint %}
+
+#### 보너스를 받지 않는 사원 \(BONUS 칼럼값이 NULL인\)들의 사번, 이름, 급여 , 보너스
+
+```sql
+--보너스를 받지 않는 사원
+SELECT EMP_ID , EMP_NAME, SALARY, BONUS
+FROM EMPLOYEE 
+WHERE BONUS IS NULL;
+
+--반대로 보너스 받는 사원
+SELECT EMP_ID , EMP_NAME, SALARY, BONUS
+FROM EMPLOYEE 
+WHERE BONUS IS NOT NULL;
+```
+
