@@ -9,3 +9,7 @@
 * [함수](dml/undefined.md)
 * [문자 관련 함수](dml/undefined-1.md)
 
+---
+
+* [숫자 관련 함수](undefined.md)
+

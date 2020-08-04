@@ -196,3 +196,82 @@ FROM
 특정의 문자열을 제거 즉, 'ABC'를 지워주는 것이 아닌 'A' , 'B', 'C'를 찾아 지워주는것.
 {% endhint %}
 
+### 
+
+## TRIM
+
+* 문자열의 앞/뒤/양쪽\(기본값\) 에 있는 특정 문자를 제거한 나머지 문자열을 반환
+* LTRIM / RTRIM 과 사용법 거의 동일
+
+```sql
+SELECT
+	TRIM( '   WG   ' )    -- WG 양쪽 공백제거
+SELECT
+	TRIM( 'Z' FROM 'ZZZZWGZZZZ')    -- WG 양쪽 Z제거
+SELECT
+	TRIM( LEADIMG 'Z' FROM 'ZZZZWGZZZZ')    -- WGZZZZ 앞쪽 Z제거
+SELECT
+	TRIM( TRAILING 'Z' FROM 'ZZZZWGZZZZ')    -- ZZZZWG 뒤쪽 Z제거
+FROM
+	DUAL;
+```
+
+결과값은 CHRACTER 타입
+
+
+
+## LOWER / UPPER / INITCAP
+
+* LOWER : 다 소문자로
+* UPPER : 다 대문자로
+* INITCAP : 단어 앞글자마다 대문자로
+
+
+
+
+
+## CONCAT
+
+* 전달된 두개의 문자열을 하나로 합친 후 결과를 반환
+
+```sql
+CONCAT(STRING, STRING)
+```
+
+결과값은 CHARACTER 타입
+
+```sql
+SELECT
+	CONCAT( '가나다라', 'ABCD' ) 
+FROM
+	DUAL;
+	
+	-- 연결연산자를 사용해도 결과는 동일
+SELECT
+	'가나다라' || 'ABCD' 
+FROM
+	DUAL;
+```
+
+{% hint style="danger" %}
+`CONCAT`은 2개의 값만 합쳐주기 때문에 여러개를 합치기 위해서는 연결연산자 사용
+{% endhint %}
+
+
+
+## REPLACE
+
+* STRING 으로부터 STR1 찾아서 STR2로 바꾼 문자열을 반환
+
+```sql
+REPLACE(STRING, STR1, STR2)
+```
+
+```sql
+SELECT REPLACE
+	( '서울시 서초구 서초동', '서초동', '양재동' ) 
+	--서울시 서초구 서초동에서 서초동 찾아 양재동으로 변환
+FROM
+	DUAL;
+```
+
