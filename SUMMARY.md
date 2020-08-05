@@ -12,9 +12,6 @@
   * [날짜 관련 함수](dml/undefined/undefined-1-1.md)
   * [형변환 함수](dml/undefined/undefined.md)
   * [기타함수](dml/undefined/undefined-3.md)
-
----
-
-* [그룹함수](undefined.md)
-* [GROUP BY\_HAVING](group-by_having.md)
+* [그룹함수](dml/undefined-1.md)
+* [GROUP BY\_HAVING](dml/group-by_having.md)
 
