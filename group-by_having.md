@@ -119,7 +119,7 @@ HAVING
 
 
 
-#### ROLLUP, CUBE  
+## ROLLUP, CUBE  
 
 * GROUP BY절에 사용되는 함수
 
@@ -163,13 +163,13 @@ ORDER BY
 
 
 
-집합연산자
+## 집합연산자
 
-SET OPERATION
+#### SET OPERATION
 
 * 여러개의 쿼리문을 가지고 하나의 쿼리문으로 만드는 연산자.
 
-종류
+### 종류
 
 * UNION   -   합집합  \(  두 쿼리문 수행한 결과값을 더한 후 중복되는 부분 한번 뺀것\) OR
 * INTERSECT    -   교집합 \( 두 쿼리문 수행한 결과값에 중복된 결과값\) AND
