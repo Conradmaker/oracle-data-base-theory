@@ -13,3 +13,8 @@
   * [형변환 함수](dml/undefined/undefined.md)
   * [기타함수](dml/undefined/undefined-3.md)
 
+---
+
+* [그룹함수](undefined.md)
+* [GROUP BY\_HAVING](group-by_having.md)
+
