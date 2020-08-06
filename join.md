@@ -495,3 +495,107 @@ FROM
 {% endtab %}
 {% endtabs %}
 
+
+
+## 다중조인 
+
+* 사번, 사원명, 부서명, 근무지역명 \(LOCAL\_NAME\)
+
+```sql
+SELECT * FROM EMPLOYEE; --DEPT_CODE
+SELECT * FROM EMPLOYEE; --DEPT_ID   LOCATION_ID
+SELECT * FROM EMPLOYEE; --          LOCAL_CODE
+```
+
+{% hint style="info" %}
+주석을 작성하면 JOIN을 조금더 쉽게 알아볼 수 있을것 같다
+{% endhint %}
+
+{% tabs %}
+{% tab title="ORACLE" %}
+```sql
+SELECT
+	EMP_ID,
+	EMP_NAME,
+	DEPT_TITLE,
+	LOCAL_NAME 
+FROM
+	EMPLOYEE,
+	DEPARTMENT,
+	LOCATION 
+WHERE
+	DEPT_CODE = DEPT_ID 
+	AND LOCATION_ID = LOCAL_CODE;
+```
+{% endtab %}
+
+{% tab title="ANSI" %}
+```sql
+SELECT
+	EMP_ID,
+	EMP_NAME,
+	DEPT_TITLE,
+	LOCAL_NAME 
+FROM
+	EMPLOYEE
+	JOIN DEPARTMENT ON ( DEPT_CODE = DEPT_ID )
+	JOIN LOCATION ON ( LOCATION_ID = LOCAL_CODE );
+```
+{% endtab %}
+{% endtabs %}
+
+위와같이 2중으로 조인을 구성할 수 있다.
+
+{% hint style="danger" %}
+순서가 바뀌게 된다면 안된다.
+
+연결고리를 찾아 찾아 가는 것이기 때문에 순서를 잘 구성해줘야 한다.
+{% endhint %}
+
+다음 내용들을 조회해보세요
+
+1. 사번
+2. 사원명
+3. 부서명\(DEPARTMENT\)
+4. 직급명\(JOB\)
+5. 근무지역명\(LOCATION\)
+6. 근무국가명\(NATIONAL\)
+7. 급여등급\(SAL\_GRADE\)
+
+| _**TABLE**_ | _**EMPLOYEE**_ | _**DEPARTMENT**_ | _**LOCATION**_ | _**NATIONAL**_ | _**SAL\_GRADE**_ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| _**EMPLOYEE**_ | DEPT\_CODE |  | JOB\_CODE |  | SALARY |
+| _**DEPARTMENT**_ | DEPT\_ID | LOCATION\_ID |  |  |  |
+| _**JOB**_ |  |  | JOB\_CODE |  |  |
+| _**LOCATION**_ |  | LOCAL\_CODE |  | NATIONAL\_CODE |  |
+| _**NATIONAL**_ |  |  |  | NATIONAL\_CODE |  |
+| _**SAL\_GRADE**_ |  |  |  |  | MAN\_SAL,MAX\_SAL |
+
+{% tabs %}
+{% tab title="ORACLE" %}
+```sql
+SELECT--별칭부여생략해도 되지만 가독성이유
+	E.EMP_ID 사번,
+	E.EMP_NAME 사원명,
+	D.DEPT_TITLE 부서명,
+	J.JOB_NAME 직급명,
+	L.LOCAL_NAME 근무지역명,
+	N.NATIONAL_NAME 근무국가명,
+	S.SAL_LEVEL 급여등급 
+FROM
+	EMPLOYEE E,
+	DEPARTMENT D,
+	JOB J,
+	LOCATION L,
+	NATIONAL N,
+	SAL_GRADE S,
+WHERE
+	E.DEPT_CODE = D.DEPT_ID --별칭부여생략해도 되지만 가독성이유
+	AND E.JOB_CODE = J.JOB_CODE 
+	AND D.LOCATION_ID = L.LOCAL_CODE 
+	AND L.NATIONAL_CODE = N.NATIONAL_CODE --별칭부여생략해도 되지만 가독성이유
+  AND E.SALARY BETWEEN S.MIN_SAL AND S.MAX_SAL;
+```
+{% endtab %}
+{% endtabs %}
+
