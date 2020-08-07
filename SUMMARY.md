@@ -14,8 +14,9 @@
   * [기타함수](dml/undefined/undefined-3.md)
 * [그룹함수](dml/undefined-1.md)
 * [GROUP BY\_HAVING](dml/group-by_having.md)
+* [JOIN](dml/join.md)
 
 ---
 
-* [JOIN](join.md)
+* [SUB QUERY](sub-query.md)
 
