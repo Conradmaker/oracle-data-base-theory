@@ -15,8 +15,9 @@
 * [그룹함수](dml/undefined-1.md)
 * [GROUP BY\_HAVING](dml/group-by_having.md)
 * [JOIN](dml/join.md)
+* [SUB QUERY](dml/sub-query.md)
 
----
+## DDL
 
-* [SUB QUERY](sub-query.md)
+* [Untitled](ddl/untitled.md)
 
