@@ -31,3 +31,11 @@ GRANT CONNECT,RESOURCE TO KH;
 
 
 
+|  |  |  |
+| :--- | :--- | :--- |
+| DML | \(MANIPULATION\)조작 | SELECT,INSERT,UPDATE,DELETE |
+| DDL | DEFINITION\(정의\) | CREATE , ALTER , DROP |
+| DCL | CONTROL\(제어\) | GRANT, REVOKE, COMMIT , ROLLBACK |
+
+
+

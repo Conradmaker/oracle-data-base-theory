@@ -19,5 +19,9 @@
 
 ## DDL
 
-* [Untitled](ddl/untitled.md)
+* [DDL](ddl/untitled.md)
+
+---
+
+* [CREATE](create.md)
 
