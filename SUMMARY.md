@@ -23,5 +23,5 @@
 
 ---
 
-* [CREATE](create.md)
+* [CREATE / DELETE](create.md)
 

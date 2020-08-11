@@ -1,4 +1,4 @@
-# CREATE
+# CREATE / DELETE
 
 ## CREATE
 
@@ -305,4 +305,76 @@ CREATE TABLE MEM(
 ```sql
 INSERT INTO MEM VALUES(1,'user1','pass01','홍길동',NULL,NULL,NULL,10);
 ```
+
+## 
+
+## DELETE
+
+### 삭제
+
+```sql
+DELETE FROM MEM_GRADE
+WHERE GRADE_CODE = 10;
+```
+
+{% hint style="danger" %}
+만약 WHERE절은 붙이지 않는다면, 테이블 전체가 삭제된다.
+
+GRADE\_CODE가 10인 자식값이 있다면 삭제가 불가능한 삭제제한이 걸린다.
+{% endhint %}
+
+만약 잘못 삭제했다면!!!!
+
+```sql
+ROLLBACK;
+```
+
+을하면 다시 돌아갈 수 있다.
+
+### ON DELETE SET NULL
+
+부모데이터 삭제시 해당 데이터를 사용하고 있는 자식데이터 값을 NULL값으로 변경시키는
+
+```sql
+CREATE TABLE MEM(
+	MEM_NO NUMBER PRIMARY KEY,
+	MEM_ID VARCHAR2(20) NOT NULL UNIQUE,
+	MEM_PWD VARCHAR2(20) NOT NULL,
+	MEM_NAME VARCHAR2(20) NOT NULL,
+	GENDER CHAR(3) CHECK (GENDER IN('남','여')),
+	PHONE CHAR(13),
+	EMAIL VARCHAR2(50),
+	GRADE_ID NUMBER REFERENCES MEM_GRADE ON DELETE SET NULL
+)
+```
+
+### DEFAULT 기본값
+
+칼럼을 지정하지 않고 INSERT시 기본값을 INSERT하고자 할때 세팅해둘 수 있는 값
+
+* 지정이 안된 칼럼에는 기본적으로 NULL이 들어가지만,
+* 해당 그 칼럼에 DEFAULT값이 있을 경우 NULL이 아닌 DEFAULT값이 들어간다.
+
+EX\) 상품에 대한 데이터를 보관할 테이블 \(상품번호, 상품명, 브랜드명 ,가격, 재고수량\)
+
+```sql
+칼럼명 자료형 DEFAULT 기본값(EX:10)
+```
+
+## SUBQUERY를 이용한 테이블 생성 \(테이블 복사의 개념\)
+
+### 표현식
+
+```sql
+CREATE TABLE 테이블명
+AS 서브쿼리
+```
+
+{% hint style="danger" %}
+제약조건같은 경우에는 NOT NULL만 복사된다.
+
+서브쿼리 SELECT절에 산술연산식 또는 함수식 기술된 경우 반드시 별칭 지정!
+{% endhint %}
+
+
 
