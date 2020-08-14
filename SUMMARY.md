@@ -32,3 +32,11 @@
 
 * [Untitled](untitled-1.md)
 
+## DCL
+
+* [DCL](dcl/dcl.md)
+
+---
+
+* [TCL](tcl.md)
+
