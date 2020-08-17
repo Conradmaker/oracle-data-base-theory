@@ -28,10 +28,6 @@
 * [CREATE / \(DELETE\)](ddl/create.md)
 * [ALTER](ddl/untitled-1.md)
 
----
-
-* [Untitled](untitled-1.md)
-
 ## DCL
 
 * [DCL](dcl/dcl.md)
@@ -40,4 +36,5 @@
 
 * [TCL](tcl.md)
 * [SEQUENCE](sequence.md)
+* [VIEW](view.md)
 
